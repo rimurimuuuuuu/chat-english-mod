@@ -14,19 +14,18 @@ public class ChatEnglishMod implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // チャットコマンドでON/OFFを切り替え
         ClientSendMessageEvents.ALLOW_CHAT.register(message -> {
-            if (message.equals(".english on")) {
+            if (message.equals(",english on")) {
                 enabled = true;
-                return false; // メッセージを送信しない
+                return false;
             }
-            if (message.equals(".english off")) {
+            if (message.equals(",english off")) {
                 enabled = false;
                 return false;
             }
             return true;
         });
 
-        LOGGER.info("[ChatEnglish] Mod initialized! .english on/off で切り替えできます。");
+        LOGGER.info("[ChatEnglish] Mod initialized! ,english on/off で切り替えできます。");
     }
 }
