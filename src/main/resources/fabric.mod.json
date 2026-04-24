@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "chatenglish",
+  "version": "${version}",
+  "name": "Chat English",
+  "description": "チャットで打った言葉を自動で英語に翻訳して送信するModです。ON/OFFキーで切り替え可能。",
+  "authors": ["You"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.chatenglish.ChatEnglishMod"
+    ]
+  },
+  "mixins": [
+    "chatenglish.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
