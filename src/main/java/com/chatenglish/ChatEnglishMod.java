@@ -14,37 +14,30 @@ public class ChatEnglishMod implements ClientModInitializer {
 
     public static final String MOD_ID = "chatenglish";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
-
-    // ON/OFFの状態（デフォルトはON）
     public static boolean enabled = true;
-
-    // キーバインド（デフォルト: Kキー）
     private static KeyBinding toggleKey;
 
     @Override
     public void onInitializeClient() {
-        // キーバインドを登録（Kキーで切り替え）
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
             "key.chatenglish.toggle",
             InputUtil.Type.KEYSYM,
             GLFW.GLFW_KEY_K,
-            "category.chatenglish"
+            "key.categories.misc"
         ));
 
-        // 毎フレームキー入力をチェック
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleKey.wasPressed()) {
                 enabled = !enabled;
-                // チャットに状態を通知
                 if (client.player != null) {
-                    String status = enabled ? "§a[Chat English] ON §7- チャットが英語に翻訳されます" 
-                                           : "§c[Chat English] OFF §7- 翻訳が無効になりました";
+                    String status = enabled
+                        ? "\u00a7a[Chat English] ON \u00a77- 英語翻訳が有効です"
+                        : "\u00a7c[Chat English] OFF \u00a77- 英語翻訳が無効です";
                     client.player.sendMessage(Text.literal(status), false);
                 }
-                LOGGER.info("[ChatEnglish] 翻訳: {}", enabled ? "ON" : "OFF");
             }
         });
 
-        LOGGER.info("[ChatEnglish] Mod initialized! Kキーで翻訳のON/OFFを切り替えられます。");
+        LOGGER.info("[ChatEnglish] Mod initialized!");
     }
 }
